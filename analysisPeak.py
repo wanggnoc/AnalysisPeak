@@ -39,10 +39,8 @@ with open(files) as f:
         chr,start,end = lines[0],int(lines[1]),int(lines[2])
         len1 = np.intersect1d(np.arange(start//200*200,(start//200+1)*200),np.arange(start,(start//200+1)*200))
         len2 = np.intersect1d(np.arange(end//200*200,(end//200+1)*200),np.arange(end//200*200,end))
-        if len(len1)<100:
-            index_s = start//200+1
-        if len(len2)<100:
-            index_e = end//200-1
+       	index_s = start//200+1 if len(len1)<100 else start//200
+        index_e = end//200-1 if len(len2)<100 else end//200
         for ind in range(index_s,index_e+1):
             array.add(chr+"_"+str(ind))
         if counts+1%1000 == 0:
